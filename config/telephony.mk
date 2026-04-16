@@ -13,8 +13,25 @@ PRODUCT_PACKAGES += \
 
 # Telephony packages
 PRODUCT_PACKAGES += \
+    tcmiface \
+    telephony-ext \
+    qti-telephony-hidl-wrapper \
+    qti-telephony-hidl-wrapper-prd \
+    qti_telephony_hidl_wrapper.xml \
+    qti_telephony_hidl_wrapper_prd.xml \
+    qti-telephony-utils \
+    qti-telephony-utils-prd \
+    qti_telephony_utils.xml \
+    qti_telephony_utils_prd.xml
+
+# Telephony - AOSP
+PRODUCT_PACKAGES += \
     messaging \
     Stk
+
+PRODUCT_BOOT_JARS += \
+    tcmiface \
+    telephony-ext
 
 # Default ringtone
 PRODUCT_PRODUCT_PROPERTIES += \

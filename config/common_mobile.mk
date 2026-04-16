@@ -91,6 +91,15 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_PACKAGES += \
     QuickAccessWallet
 
+# Telephony - CLO
+PRODUCT_PACKAGES += \
+    extphonelib \
+    extphonelib-product \
+    extphonelib.xml \
+    extphonelib_product.xml \
+    ims-ext-common \
+    ims_ext_common.xml
+
 # TextClassifier
 PRODUCT_PACKAGES += \
     libtextclassifier_annotator_en_model \
