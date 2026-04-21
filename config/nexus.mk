@@ -22,5 +22,9 @@ PRODUCT_PACKAGES += \
 # Qualcomm Common
 $(call inherit-product, device/qcom/common/common.mk)
 
+# Sensors
+PRODUCT_PACKAGES += \
+    android.frameworks.sensorservice@1.0.vendor
+
 # Snapdragon Clang
 $(call inherit-product, vendor/qcom/sdclang/config/SnapdragonClang.mk)
