@@ -28,3 +28,16 @@ $(NEXUS_TARGET_PACKAGE): $(INTERNAL_OTA_PACKAGE_TARGET)
 
 .PHONY: bacon
 bacon: $(NEXUS_TARGET_PACKAGE) $(DEFAULT_GOAL)
+
+# -----------------------------------------------------------------
+# Nexus fastboot image package
+
+NEXUS_IMG_PACKAGE := $(PRODUCT_OUT)/nexus-$(NEXUS_VERSION)-img.zip
+
+$(NEXUS_IMG_PACKAGE): $(INTERNAL_UPDATE_PACKAGE_TARGET)
+	$(hide) ln -f $(INTERNAL_UPDATE_PACKAGE_TARGET) $(NEXUS_IMG_PACKAGE)
+	$(hide) $(SHA256) $(NEXUS_IMG_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(NEXUS_IMG_PACKAGE).sha256sum
+	@echo "IMG Package: $(NEXUS_IMG_PACKAGE)" >&2
+
+.PHONY: bacon-img
+bacon-img: $(DEFAULT_GOAL) $(NEXUS_IMG_PACKAGE)
