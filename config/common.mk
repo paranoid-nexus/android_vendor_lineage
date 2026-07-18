@@ -201,6 +201,6 @@ PRODUCT_EXTRA_RECOVERY_KEYS += \
 
 include vendor/nexus/config/version.mk
 
--include vendor/nexus-priv/keys/keys.mk
+-include vendor/certs/keys/keys.mk
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
