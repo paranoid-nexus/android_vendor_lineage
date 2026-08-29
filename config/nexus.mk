@@ -28,7 +28,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     FrameworkOverlayNexus
     NetworkStackMainlineOverlayNexus \
-    NetworkStackOverlayNexus
+    NetworkStackOverlayNexus \
+    SettingsProviderOverlayNexus
 
 # Protobuf - Workaround for prebuilt Qualcomm HAL
 PRODUCT_PACKAGES += \
