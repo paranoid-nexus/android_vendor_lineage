@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 The OctaviOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Whether to show activity indicators in the status bar -->
+    <bool name="config_showActivity">false</bool>
+
+    <!-- Whether to show wifi activity indicators in the status bar -->
+    <bool name="config_showWifiActivity">false</bool>
+</resources>
