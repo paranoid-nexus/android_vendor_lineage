@@ -1,5 +1,8 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/window_extensions.mk)
 
+# Tablet Flags
+TARGET_IS_TABLET := true
+
 # Settings
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.settings.large_screen_opt.enabled=true

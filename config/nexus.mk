@@ -32,6 +32,13 @@ PRODUCT_PACKAGES += \
     SettingsProviderOverlayNexus \
     SystemUIOverlayNexus
 
+# Overlay Wallpapers
+ifneq ($(TARGET_IS_TABLET),true)
+PRODUCT_PACKAGES += FrameworkOverlayNexusWallpaperPhone
+else
+PRODUCT_PACKAGES += FrameworkOverlayNexusWallpaperTablet
+endif
+
 # Protobuf - Workaround for prebuilt Qualcomm HAL
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full-3.9.1-vendorcompat \
