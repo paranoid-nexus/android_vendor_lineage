@@ -1,0 +1,12 @@
+Nexus
+===========
+
+Getting started
+---------------
+
+Please see the [Nexus Guide](https://github.com/paranoid-nexus/android/guide/15/README.mkdn) for building instructions, by device.
+
+
+Submitting patches
+------------------
+Patches are always welcome! Please submit your patches via pull request.
