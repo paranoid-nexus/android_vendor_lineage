@@ -1,4 +1,4 @@
-# Copyright (C) 2024 The LineageOS Project
+# Copyright (C) 2021-2024 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,18 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include vendor/lineage/build/target/product/lineage_generic_tv_target.mk
+$(call inherit-product, device/generic/goldfish/64bitonly/product/sdk_phone64_arm64.mk)
+$(call inherit-product, vendor/nexus/build/target/product/nexus_sdk_phone_arm64_board.mk)
 
-$(call inherit-product, device/google/atv/products/sdk_atv64_x86_64.mk)
+include vendor/nexus/build/target/product/nexus_generic_target.mk
 
-TARGET_NO_KERNEL_OVERRIDE := true
+# Always build modules from source
+PRODUCT_MODULE_BUILD_FROM_SOURCE := true
 
 # Enable mainline checking
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := relaxed
 
 # Overrides
-PRODUCT_NAME := lineage_sdk_tv_x86_64
-PRODUCT_MODEL := LineageOS Android TV SDK built for x86_64
+PRODUCT_NAME := nexus_sdk_phone_arm64
+PRODUCT_MODEL := Nexus Android SDK built for arm64
 
-PRODUCT_SDK_ADDON_NAME := lineage
-PRODUCT_SDK_ADDON_SYS_IMG_SOURCE_PROP := $(LOCAL_PATH)/source.properties
+PRODUCT_SDK_ADDON_NAME := nexus
+PRODUCT_SDK_ADDON_SYS_IMG_SOURCE_PROP := vendor/nexus/build/target/product/source.properties

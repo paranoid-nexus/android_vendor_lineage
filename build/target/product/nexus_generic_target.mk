@@ -1,4 +1,4 @@
-# Copyright (C) 2019 The LineageOS Project
+# Copyright (C) 2019-2020 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Baseline Nvidia framework enhancements
-# Includes support for:
-# 1) NvCPL / Application Profiles
-NV_ANDROID_FRAMEWORK_ENHANCEMENTS := true
+$(call inherit-product, vendor/nexus/config/common_full_phone.mk)
+
+# Allow building otatools
+TARGET_FORCE_OTA_PACKAGE := true

@@ -1,46 +1,34 @@
-PRODUCT_VERSION_MAJOR = 22
-PRODUCT_VERSION_MINOR = 0
+# Nexus Versioning
+PRODUCT_VERSION := 17
 
-ifeq ($(LINEAGE_VERSION_APPEND_TIME_OF_DAY),true)
-    LINEAGE_BUILD_DATE := $(shell date -u +%Y%m%d_%H%M%S)
-else
-    LINEAGE_BUILD_DATE := $(shell date -u +%Y%m%d)
-endif
+# Get current UTC date components
+NEXUS_DATE_YEAR := $(shell date -u +%Y)
+NEXUS_DATE_MONTH := $(shell date -u +%m)
+NEXUS_DATE_DAY := $(shell date -u +%d)
+NEXUS_DATE_HOUR := $(shell date -u +%H)
+NEXUS_DATE_MINUTE := $(shell date -u +%M)
 
-# Set LINEAGE_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
+# Final build date in YYYYMMDD-HHMM format
+NEXUS_BUILD_DATE := $(NEXUS_DATE_YEAR)$(NEXUS_DATE_MONTH)$(NEXUS_DATE_DAY)-$(NEXUS_DATE_HOUR)$(NEXUS_DATE_MINUTE)
 
-ifndef LINEAGE_BUILDTYPE
-    ifdef RELEASE_TYPE
-        # Starting with "LINEAGE_" is optional
-        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^LINEAGE_||g')
-        LINEAGE_BUILDTYPE := $(RELEASE_TYPE)
-    endif
-endif
+# Target product short name
+TARGET_PRODUCT_SHORT := $(subst nexus_,,$(NEXUS_BUILD))
 
-# Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(LINEAGE_BUILDTYPE)),)
-    LINEAGE_BUILDTYPE := UNOFFICIAL
-    LINEAGE_EXTRAVERSION :=
-endif
+# Complete version suffix
+NEXUS_VERSION_SUFFIX := $(NEXUS_BUILD_DATE)-$(NEXUS_BUILD)
 
-ifeq ($(LINEAGE_BUILDTYPE), UNOFFICIAL)
-    ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
-        LINEAGE_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
-    endif
-endif
+# Internal and Display versions
+NEXUS_VERSION := $(PRODUCT_VERSION)-$(NEXUS_VERSION_SUFFIX)
+NEXUS_MODVERSION := $(PRODUCT_VERSION)-$(NEXUS_BUILD)
+NEXUS_DISPLAY_VERSION := Nexus-$(PRODUCT_VERSION)
+NEXUS_FINGERPRINT := Nexus/$(PRODUCT_VERSION)/$(TARGET_PRODUCT_SHORT)/$(NEXUS_BUILD_DATE)
 
-LINEAGE_VERSION_SUFFIX := $(LINEAGE_BUILD_DATE)-$(LINEAGE_BUILDTYPE)$(LINEAGE_EXTRAVERSION)-$(LINEAGE_BUILD)
-
-# Internal version
-LINEAGE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(LINEAGE_VERSION_SUFFIX)
-
-# Display version
-LINEAGE_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR)-$(LINEAGE_VERSION_SUFFIX)
-
-# LineageOS version properties
-PRODUCT_SYSTEM_PROPERTIES += \
-    ro.lineage.version=$(LINEAGE_VERSION) \
-    ro.lineage.display.version=$(LINEAGE_DISPLAY_VERSION) \
-    ro.lineage.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
-    ro.lineage.releasetype=$(LINEAGE_BUILDTYPE) \
-    ro.modversion=$(LINEAGE_VERSION)
+# Nexus Version Props
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.nexus.version=$(NEXUS_VERSION) \
+    ro.nexus.modversion=$(NEXUS_MODVERSION) \
+    ro.nexus.display.version=$(NEXUS_DISPLAY_VERSION) \
+    ro.nexus.build.date=$(NEXUS_BUILD_DATE) \
+    ro.nexus.build.version=$(PRODUCT_VERSION) \
+    ro.nexus.fingerprint=$(NEXUS_FINGERPRINT) \
+    ro.nexus.device=$(NEXUS_BUILD)

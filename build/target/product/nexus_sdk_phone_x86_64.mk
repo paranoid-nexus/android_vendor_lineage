@@ -14,7 +14,7 @@
 
 $(call inherit-product, device/generic/goldfish/64bitonly/product/sdk_phone64_x86_64.mk)
 
-include vendor/lineage/build/target/product/lineage_generic_target.mk
+include vendor/nexus/build/target/product/nexus_generic_target.mk
 include device/generic/goldfish/board/kernel/x86_64.mk
 
 # Always build modules from source
@@ -24,8 +24,8 @@ PRODUCT_MODULE_BUILD_FROM_SOURCE := true
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := relaxed
 
 # Overrides
-PRODUCT_NAME := lineage_sdk_phone_x86_64
-PRODUCT_MODEL := LineageOS Android SDK built for x86_64
+PRODUCT_NAME := nexus_sdk_phone_x86_64
+PRODUCT_MODEL := Nexus Android SDK built for x86_64
 
 PRODUCT_SDK_ADDON_NAME := lineage
 PRODUCT_SDK_ADDON_SYS_IMG_SOURCE_PROP := $(LOCAL_PATH)/source.properties
